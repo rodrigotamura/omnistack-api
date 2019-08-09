@@ -11,7 +11,7 @@ const DevSchema = new Schema({
         },
         bio: {
             type: String,
-            required: true,
+            required: false,
         },
         avatar: {
             type: String,

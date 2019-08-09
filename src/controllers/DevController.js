@@ -30,7 +30,7 @@ module.exports = {
         // verificando antes se o usuário já não existe cadastrado em nosso BD
         const userExists = await Dev.findOne({ user: username });
         if(userExists) {
-            return res.json({userExists, response: 'This user is already created'}); // retorna o usuário encontrado
+            return res.json(userExists); // retorna o usuário encontrado
         }
 
         const response = await axios.get(`https://api.github.com/users/${username}`);
@@ -38,8 +38,8 @@ module.exports = {
         // baseado na response do GitHub, vamos armazenar no banco
         try{
             const { 
-                name, 
-                bio, 
+                name="Sem nome", 
+                bio="Sem Bio", 
                 avatar_url: avatar 
             } = response.data; // desestruturação
 
